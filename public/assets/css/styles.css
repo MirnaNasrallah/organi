@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+body {
+    font-family: "Poppins", sans-serif;
+    color: #013118b3;
+}
+
+/** header **/
+
+#header .btn {
+    border-radius: 50px;
+    padding: 5px 20px;
+}
+
+#header .btn:hover {
+    border-radius: 50px;
+    color: #006c35b3;
+    background-color: #ffff;
+}
+
+@media (max-width: 978px){
+    #header .logout-btn{
+    margin:0 20px;
+   }
+}
+@media (max-width: 991px){
+    #header .login-btn{
+      margin:0 20px;
+   }
+   #header .register-btn{
+       margin-right: 20px;
+   }
+}
+
+.form-control {
+    width:300px !important;
+}
+
+@media (max-width: 1402px){
+    .form-control {
+        width:200px !important;
+    }
+}
+
+.form-control::placeholder {
+    color: white;
+    text-align: center;
+}
+
+.active-cyan-2 input.form-control[type=text] {
+    border-style: solid;
+    background-color: #02773bb3;
+    color: white;
+    border-radius: 50px;
+}
+
+.active-cyan-2 input.form-control[type=text]:focus {
+    border-style: none;
+    border: 1px solid #ffff;
+    box-shadow: 0 1px 0 0 #59f3c0;
+}
+
+.active-cyan-2 input.form-control[type=text]:focus::placeholder {
+    visibility: hidden;
+}
+
+.active-cyan-2 .fas {
+    color: #ffff;
+    margin-left: 15px;
+    margin-top: 7px;
+}
+
+/* shop section */
+
+.shop-title {
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    font-size: 50px;
+    text-align:center;
+}
+
+.shop-container {
+    margin-top: 150px;
+}
+
+.card-body {
+    position: relative;
+}
+
+.card-row {
+    margin: 50px 50px 50px 50px;
+}
+
+.card-col {
+    padding-left: 20px;
+}
+
+.card-shape {
+    border-color: #006c35b3;
+    border-radius: 10px;
+}
+
+.card-btn, .card-heart-btn {
+    color: white;
+    border-radius: 10px;
+    background-color: #006c35b3;
+}
+
+.card-btn {
+    position: absolute;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+    right: 1rem;
+}
+
+.card-heart-btn {
+    margin-left: 85%;
+}
+
+.card-btn:hover, .card-heart-btn:hover {
+    background-color: transparent;
+    color: #006c35b3;
+}
+
+.card-heart-btn .heart-text {
+    visibility: hidden;
+    width: 125px;
+    background-color: #006c35b3;
+    color: #ffff;
+    text-align: left;
+    border-radius: 10px;
+    padding: 5px 0;
+    top: -10px;
+    left: 200px;
+    position: absolute;
+    z-index: 1;
+}
+
+.card-heart-btn:hover .heart-text {
+    visibility: visible;
+}
+
+.price {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+/** register and login **/
+
+.login-container, .reg-container {
+    min-height: 100vh;
+    position: relative;
+    background-image: url("../img/reg1.jpg");
+    background-size: cover;
+    overflow: overlay;
+}
+.form-container{
+    position:absolute;
+    top: 150px;
+    right: 250px;
+}
+.login-header, .reg-header {
+    margin-bottom: 30px;
+    font-family: "Poppins", sans-serif;
+}
+
+.line {
+    margin-bottom: 30px;
+}
+
+.label, .input, .checkbox {
+    margin-bottom: 10px;
+}
+
+.label {
+    font-size: 20px;
+}
+
+.checkbox {
+    font-size: 15px;
+}
+
+.input {
+    border-radius: 50px;
+}
+
+.input:focus {
+    box-shadow: none;
+    border: 2px solid #006c35b3;
+}
+
+.login-form-btn, .reg-form-btn {
+    margin-top: 10px;
+    font-size: 20px;
+    border-radius: 50px;
+    padding: 5px 50px;
+}
+
+.reg-alert{
+    margin-top:20px;
+}
+
+/** dashboard **/
+
+.dash-container{
+margin-top: 100px;
+}
+.dash-card,.dash-card-header{
+    border-style: none;
+}
+.dash-card-header{
+    background-color: unset;
+    font-family: "Poppins", sans-serif;
+}
+
+/***** wish-cart ****/
+#button1, #button2 {
+    display: inline-block;
+    margin-right: 5px;
+    position: relative;
+    align-content: end;
+}
+
+/**** calorie calculator ****/
+
+.bmi-button {
+    background: #057735be;
+    border: 0;
+    padding: 10px 45px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.bmi-button:hover {
+    background: #0a9745be;
+}
+
+.bmi-input {
+    padding-left: 10px;
+    content: "";
+    display: block;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    border: 3px solid #59f3c0;
+    background: #dcf0eb;
+    width: 300px;
+    height: 40px;
+}
+
+.bmi-input:focus {
+    outline-style: none;
+    border: 3px solid #4ac79d;
+}
+
+.bmi-input::placeholder {
+    color: #6d9284;
+    text-align: center;
+}
+
+.bmi-input:focus::placeholder {
+    visibility: hidden;
+}
+.bmi-profile{
+    text-align: left;
+    margin-top: 50px;
+    padding-top:0;
+}
+.bmi-profile p{
+    font-size: 15px;
+    margin-top:0;
+    margin-left: 30px;
+}
+.bmi-profile button{
+    margin-top: 10px;
+    width: 300px;
+}
+.callout {
+    position: absolute;
+    top: 10px;
+    right: 150px;
+    margin-left: 50px;
+    max-width: 400px;
+}
+.callout-container {
+    padding: 15px;
+    font-size: large;
+    color: black
+}
+.callout-header {
+    padding: 25px 15px;
+    background: #057735be;
+    font-size: 30px;
+    color: white;
+}
+
+
+
