@@ -32,7 +32,7 @@ class ShopController extends Controller
     public function shopIndexPlan()
     {
         $products = Product::all();
-        $user = Auth::user();
+        $User = Auth::user();
         return view('shop.shopContentPlan', compact('products','user'));
     }
 

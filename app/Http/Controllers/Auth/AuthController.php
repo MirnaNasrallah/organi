@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\product;
-use App\Models\user;
+use App\Models\User;
 use App\Models\wishlist;
 use App\Models\cart;
 use Illuminate\Support\Facades\Hash;
@@ -67,7 +67,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:Users',
             'password' => 'required|min:6',
         ]);
 
