@@ -1,11 +1,18 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\MainPageController;
-use App\Http\Controllers\ShopController;
-use App\Http\Controllers\wishlistController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PlanDayController;
+use App\Http\Controllers\PlanItemController;
+use App\Http\Controllers\BMIRecordController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,34 +25,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[ShopController::class,'mainPageindex'])->name('/');
+Route::get('/', function () {
+    return view('mainPage');
+});
 
-Route::get('/shop',[ShopController::class,'shopIndex'])->name('shop');
-
-Route::get('/search',[ShopController::class,'searchIndex'])->name('search');
-
-Route::get('/wishlist',[AuthController::class,'wish'])->name('wishlist');
-
-Route::get('/cart',[AuthController::class,'cart'])->name('cart');
-
-Route::get('/shopLow',[ShopController::class,'shopIndexLow'])->name('shopLow');
-
-Route::get('/shopHigh',[ShopController::class,'shopIndexHigh'])->name('shopHigh');
-
-Route::get('/shopPlan',[ShopController::class,'shopIndexPlan'])->name('shopPlan');
-/*********************/
-
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
-Route::get('registration', [AuthController::class, 'registration'])->name('register');
-Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
-Route::get('dashboard', [AuthController::class, 'dashboard']);
-Route::get('/addtowishlist/{id}',[AuthController::class,'addtowishlist']);
-Route::get('/deletefromwishlist/{id}',[AuthController::class,'deletefromwishlist']);
-Route::get('/deletefromcart/{id}',[AuthController::class,'deletefromcart']);
-Route::get('/addtocart/{id}',[AuthController::class,'addtocart']);
-Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-Route::post('dashboard', [AuthController::class, 'update'])->name('user.update');
-
-
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+// Index routes for all models
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/order-items', [OrderItemController::class, 'index'])->name('order-items.index');
+Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
+Route::get('/plan-days', [PlanDayController::class, 'index'])->name('plan-days.index');
+Route::get('/plan-items', [PlanItemController::class, 'index'])->name('plan-items.index');
+Route::get('/bmi-records', [BMIRecordController::class, 'index'])->name('bmi-records.index');
+Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+Route::get('/wishlists', [WishlistController::class, 'index'])->name('wishlists.index');
+Route::get('/carts', [CartController::class, 'index'])->name('carts.index');
