@@ -9,6 +9,8 @@ class BMIRecord extends Model
 {
     use HasFactory;
 
+    protected $table = 'bmi_records';
+
     protected $fillable = [
         'user_id',
         'height',
