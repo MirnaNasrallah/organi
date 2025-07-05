@@ -26,8 +26,17 @@ use App\Http\Controllers\CartController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::post('/logout', [UserController::class, 'logout']);
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::patch('/profile', [UserController::class, 'updateProfile']);
+    Route::post('/upgrade-premium', [UserController::class, 'upgradeToPremium']);
 });
 
 // API Index routes for all models
@@ -43,3 +52,9 @@ Route::get('/bmi-records', [BMIRecordController::class, 'index']);
 Route::get('/payments', [PaymentController::class, 'index']);
 Route::get('/wishlists', [WishlistController::class, 'index']);
 Route::get('/carts', [CartController::class, 'index']);
+
+// Protected Plan routes
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('plans', PlanController::class);
+    Route::get('/my-plan', [PlanController::class, 'myPlan']);
+});

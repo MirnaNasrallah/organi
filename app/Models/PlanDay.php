@@ -14,11 +14,15 @@ class PlanDay extends Model
         'day_number',
         'total_calories',
         'total_protein',
+        'total_carbs',
+        'total_fat',
     ];
 
     protected $casts = [
         'total_calories' => 'decimal:2',
         'total_protein' => 'decimal:2',
+        'total_carbs' => 'decimal:2',
+        'total_fat' => 'decimal:2',
     ];
 
     public function plan()
@@ -27,6 +31,12 @@ class PlanDay extends Model
     }
 
     public function planItems()
+    {
+        return $this->hasMany(PlanItem::class);
+    }
+
+    // Add alias for compatibility with PlanResource
+    public function items()
     {
         return $this->hasMany(PlanItem::class);
     }

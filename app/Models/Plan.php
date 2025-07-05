@@ -29,4 +29,10 @@ class Plan extends Model
     {
         return $this->hasMany(PlanDay::class);
     }
+
+    // Add alias for compatibility with PlanResource
+    public function days()
+    {
+        return $this->hasMany(PlanDay::class);
+    }
 } 

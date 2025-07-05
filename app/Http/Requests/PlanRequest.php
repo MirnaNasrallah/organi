@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PlanRequest extends FormRequest
 {
@@ -11,8 +12,7 @@ class PlanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check() && auth()->user()->hasVerifiedEmail();
-        
+        return Auth::check() && (Auth::user()->email_verified_at !== null);
     }
 
     /**
@@ -25,7 +25,7 @@ class PlanRequest extends FormRequest
         return [
             'goal' => 'required|string|in:lose,gain,maintain',
             'activity_level' => 'required|string|in:sedentary,lightly_active,moderately_active,very_active',
-            'calories_target' => 'required|numeric|min:1000|max:5000',
+            'calories_target' => 'sometimes|numeric|min:1000|max:5000',
         ];
     }
 }
