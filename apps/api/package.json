@@ -1,0 +1,11 @@
+{
+    "name": "@lockmate/api",
+    "private": true,
+    "scripts": {
+        "lint": "composer lint",
+        "test": "composer test"
+    },
+    "optionalDependencies": {
+        "@laravel/multiplex": "^0.4.1"
+    }
+}
