@@ -1,0 +1,25 @@
+{
+  "name": "@lockmate/i18n",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "prettier": "@lockmate/config/prettier",
+  "scripts": {
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "tsc",
+    "test": "node --test \"test/*.test.ts\""
+  },
+  "dependencies": {
+    "@lockmate/api-client": "workspace:*"
+  },
+  "devDependencies": {
+    "@lockmate/config": "workspace:*",
+    "@types/node": "^24.19.2",
+    "eslint": "^10.13.0",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3"
+  }
+}
