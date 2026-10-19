@@ -10,8 +10,11 @@ Start with [`docs/CONTEXT.md`](docs/CONTEXT.md), then [`docs/PLAN.md`](docs/PLAN
 |---|---|
 | `apps/api` | Laravel 13 API (`/api/v1`), organised by domain module in `app/Modules` |
 | `apps/web` | Next.js website (coming) |
-| `apps/mobile` | Expo app (coming) |
-| `packages/*` | Generated API client, design tokens, i18n strings, shared config (coming) |
+| `apps/mobile` | Expo app (Expo Router, TanStack Query): the main product |
+| `packages/tokens` | Colours, type and spacing from the design system → CSS variables and a React Native theme |
+| `packages/api-client` | Typed API client generated from the API's OpenAPI spec |
+| `packages/i18n` | Every user-facing string in English and Arabic |
+| `packages/config` | Shared ESLint, Prettier and tsconfig |
 
 The 2021 Organi app this grew from is tagged `legacy`.
 

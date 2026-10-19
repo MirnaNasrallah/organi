@@ -1,0 +1,10 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "env": ["EXPO_PUBLIC_*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env"],
+      "outputs": ["dist/**"]
+    }
+  }
+}
