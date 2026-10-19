@@ -14,13 +14,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 final class StatusResource extends JsonResource
 {
     /**
-     * @return array{status: 'ok', locale: string}
+     * @return array{status: 'ok', locale: Locale}
      */
     public function toArray(Request $request): array
     {
         return [
             'status' => 'ok',
-            'locale' => $this->resource->value,
+            'locale' => $this->resource,
         ];
     }
 }

@@ -1,0 +1,12 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["@lockmate/api#spec"],
+      "outputs": ["src/schema.generated.ts"]
+    },
+    "typecheck": {
+      "dependsOn": ["build"]
+    }
+  }
+}

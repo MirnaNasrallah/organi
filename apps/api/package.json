@@ -3,7 +3,8 @@
     "private": true,
     "scripts": {
         "lint": "composer lint",
-        "test": "composer test"
+        "test": "composer test",
+        "spec": "php artisan scramble:export"
     },
     "optionalDependencies": {
         "@laravel/multiplex": "^0.4.1"

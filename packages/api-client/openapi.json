@@ -1,0 +1,72 @@
+{
+    "openapi": "3.1.2",
+    "info": {
+        "title": "Lockmate API",
+        "version": "1",
+        "description": "Lockmate API, version 1. Responses honour Accept-Language (en, ar)."
+    },
+    "servers": [
+        {
+            "url": "/api/v1"
+        }
+    ],
+    "paths": {
+        "/status": {
+            "get": {
+                "operationId": "v1.status",
+                "tags": [
+                    "Status"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "`StatusResource`",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/StatusResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Locale": {
+                "type": "string",
+                "enum": [
+                    "en",
+                    "ar"
+                ],
+                "title": "Locale"
+            },
+            "StatusResource": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "const": "ok"
+                    },
+                    "locale": {
+                        "$ref": "#/components/schemas/Locale"
+                    }
+                },
+                "required": [
+                    "status",
+                    "locale"
+                ],
+                "title": "StatusResource"
+            }
+        }
+    }
+}

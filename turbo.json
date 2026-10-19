@@ -28,6 +28,9 @@
         },
         "format": {
             "cache": false
+        },
+        "spec": {
+            "cache": false
         }
     }
 }

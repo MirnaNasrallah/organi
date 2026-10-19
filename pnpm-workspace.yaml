@@ -1,3 +1,8 @@
 packages:
   - apps/*
   - packages/*
+
+peerDependencyRules:
+  allowedVersions:
+    # openapi-typescript declares TypeScript 5 but works with the repo's 6.0 (packages/config README).
+    openapi-typescript>typescript: '6'
