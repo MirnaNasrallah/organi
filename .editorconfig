@@ -16,3 +16,10 @@ indent_size = 2
 
 [docker-compose.yml]
 indent_size = 4
+
+# JavaScript side: 2 spaces, as Prettier formats it (packages/config).
+[*.{js,jsx,ts,tsx,mjs,cjs}]
+indent_size = 2
+
+[packages/**.json]
+indent_size = 2

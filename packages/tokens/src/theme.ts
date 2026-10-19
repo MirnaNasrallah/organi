@@ -61,6 +61,8 @@ function typeOf(value: Value, indent: string): string {
   if (Array.isArray(value)) return `(${value.map((v) => typeOf(v, indent)).join(' | ')})[]`;
 
   const inner = `${indent}  `;
-  const fields = Object.entries(value).map(([key, v]) => `${inner}readonly ${JSON.stringify(key)}: ${typeOf(v, inner)};`);
+  const fields = Object.entries(value).map(
+    ([key, v]) => `${inner}readonly ${JSON.stringify(key)}: ${typeOf(v, inner)};`,
+  );
   return `{\n${fields.join('\n')}\n${indent}}`;
 }

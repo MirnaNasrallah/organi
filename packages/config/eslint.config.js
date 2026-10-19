@@ -1,0 +1,15 @@
+import js from '@eslint/js';
+import prettier from 'eslint-config-prettier';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import tseslint from 'typescript-eslint';
+
+// Shared lint rules for every TypeScript package (RULES §2: strict, no `any`).
+// Prettier owns formatting, so its config switches off ESLint's style rules.
+export default defineConfig(
+  globalIgnores(['dist/']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [js.configs.recommended, tseslint.configs.strict],
+  },
+  prettier,
+);
