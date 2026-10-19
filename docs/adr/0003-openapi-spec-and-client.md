@@ -10,7 +10,7 @@ Web and mobile must use one generated client (RULES §3), API types must come fr
 ## Decision
 - **Scramble** generates OpenAPI 3.1 from routes, Form Requests and API Resources. Add annotations only where Scramble cannot infer a type.
 - The spec is committed as `packages/api-client/openapi.json`. CI regenerates it and fails if the result differs.
-- **openapi-typescript** generates the TS types, **openapi-fetch** is the typed client, and **openapi-react-query** wraps it in TanStack Query hooks (`$api.useQuery('get', '/api/v1/recipes')`).
+- **openapi-typescript** generates the TS types, **openapi-fetch** is the typed client, and **openapi-react-query** wraps it in TanStack Query hooks (`$api.useQuery('get', '/recipes')`, with `/api/v1` as the base URL).
 - Generated files are never edited by hand.
 
 ## Options considered
