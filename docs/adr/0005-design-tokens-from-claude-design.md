@@ -21,9 +21,9 @@ Colours, type, spacing and radii come from `packages/tokens` (RULES §3, §4). T
 ## Consequences
 - React Native gets one font family per weight (`Rubik_400Regular`, `Rubik_500Medium`, `Rubik_600SemiBold`) instead of `fontWeight`, which is unreliable with variable fonts on Android.
 - Letter-spacing applies to Latin text only. Arabic gets 0 so letters keep joining.
-- The artifact still holds files from an earlier direction (`tokens.css`, `api/tokens.md`, the Marks and Name-candidates assets: Evergreen/Brass, Readex Pro). Copy from `tokens.json` and the Logos group only.
+- Copy from `tokens.json` and the Logos group only. Generated files left from an earlier direction (Evergreen/Brass, Readex Pro) were removed in design system v0.5; the old mark and name-candidate images stay in the artifact's asset storage, unreferenced.
 
 ## Action items
-1. [ ] Add to the design system before building form controls: a control-border colour with at least 3:1 contrast (`line` is 1.16:1 and decorative only) and a 44 pt minimum touch target.
+1. [x] Add to the design system before building form controls: a control-border colour with at least 3:1 contrast (`line` is 1.16:1 and decorative only) and a 44 pt minimum touch target. Done in v0.5: `line-strong` and `size-touch-target`, both guarded by tests.
 2. [ ] Check Rubik has tabular figures (`tnum`) for the `metric` style on web and mobile.
-3. [ ] Remove the stale files from the artifact.
+3. [x] Remove the stale files from the artifact (v0.5).
