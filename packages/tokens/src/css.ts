@@ -8,15 +8,17 @@ export function toCss(tokens: Tokens): string {
     ...[...tokens.space, ...tokens.radius, ...tokens.size].map((size) => `--${size.name}: ${size.px}px;`),
   ];
 
-  return [
-    '/* Generated from tokens.json by @lockmate/tokens. Do not edit. */',
-    block(':root', ['color-scheme: light;', ...light, ...shared]),
-    '@media (prefers-color-scheme: dark) {',
-    block(':root:not([data-theme="light"])', ['color-scheme: dark;', ...dark], '  '),
-    '}',
-    block(':root[data-theme="dark"]', ['color-scheme: dark;', ...dark]),
-    ...tokens.textStyles.flatMap(textClass),
-  ].join('\n') + '\n';
+  return (
+    [
+      '/* Generated from tokens.json by @lockmate/tokens. Do not edit. */',
+      block(':root', ['color-scheme: light;', ...light, ...shared]),
+      '@media (prefers-color-scheme: dark) {',
+      block(':root:not([data-theme="light"])', ['color-scheme: dark;', ...dark], '  '),
+      '}',
+      block(':root[data-theme="dark"]', ['color-scheme: dark;', ...dark]),
+      ...tokens.textStyles.flatMap(textClass),
+    ].join('\n') + '\n'
+  );
 }
 
 function textClass(style: TextStyle): string[] {

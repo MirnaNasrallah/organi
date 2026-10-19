@@ -17,7 +17,13 @@ export function fixture() {
         {
           styles: [
             { name: 'body', fontSize: '16px', lineHeight: '24px', fontWeight: 400 },
-            { name: 'metric', fontSize: '28px', lineHeight: '32px', fontWeight: 500, letterSpacing: '-0.5px' },
+            {
+              name: 'metric',
+              fontSize: '28px',
+              lineHeight: '32px',
+              fontWeight: 500,
+              letterSpacing: '-0.5px',
+            },
           ] as StyleEntry[],
         },
       ],

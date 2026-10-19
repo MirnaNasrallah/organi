@@ -12,7 +12,10 @@ describe('toCss', () => {
 
   it('puts light colours on :root and dark ones behind the OS setting or data-theme', () => {
     assert.match(css, /^:root \{\n {2}color-scheme: light;\n {2}--ink-muted: #56685D;/m);
-    assert.match(css, /^ {2}:root:not\(\[data-theme="light"\]\) \{\n {4}color-scheme: dark;\n {4}--ink-muted: #A6BCAD;/m);
+    assert.match(
+      css,
+      /^ {2}:root:not\(\[data-theme="light"\]\) \{\n {4}color-scheme: dark;\n {4}--ink-muted: #A6BCAD;/m,
+    );
     assert.match(css, /^:root\[data-theme="dark"\] \{\n {2}color-scheme: dark;\n {2}--ink-muted: #A6BCAD;/m);
   });
 
@@ -29,7 +32,10 @@ describe('toCss', () => {
   });
 
   it('sets tabular figures after the font shorthand, which would otherwise reset them', () => {
-    assert.match(css, /font: 500 28px\/32px var\(--font-sans\);\n {2}letter-spacing: -0\.5px;\n {2}font-variant-numeric: tabular-nums;/);
+    assert.match(
+      css,
+      /font: 500 28px\/32px var\(--font-sans\);\n {2}letter-spacing: -0\.5px;\n {2}font-variant-numeric: tabular-nums;/,
+    );
   });
 });
 
@@ -42,7 +48,13 @@ describe('buildTheme', () => {
       size: { touchTarget: 44 },
       text: {
         body: { fontSize: 16, lineHeight: 24, fontWeight: 400 },
-        metric: { fontSize: 28, lineHeight: 32, fontWeight: 500, letterSpacing: -0.5, fontVariant: ['tabular-nums'] },
+        metric: {
+          fontSize: 28,
+          lineHeight: 32,
+          fontWeight: 500,
+          letterSpacing: -0.5,
+          fontVariant: ['tabular-nums'],
+        },
       },
     });
   });

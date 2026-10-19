@@ -18,7 +18,14 @@ describe('parseTokens', () => {
     assert.deepEqual(tokens.space, [{ name: 'space-1', px: 4 }]);
     assert.deepEqual(tokens.textStyles, [
       { name: 'body', fontSize: 16, lineHeight: 24, fontWeight: 400, letterSpacing: null, tabularNumbers: false },
-      { name: 'metric', fontSize: 28, lineHeight: 32, fontWeight: 500, letterSpacing: -0.5, tabularNumbers: true },
+      {
+        name: 'metric',
+        fontSize: 28,
+        lineHeight: 32,
+        fontWeight: 500,
+        letterSpacing: -0.5,
+        tabularNumbers: true,
+      },
     ]);
   });
 
