@@ -43,7 +43,7 @@ This repo started in 2021 as **Organi**, a student project by six junior develop
 
 ## 3. Who it's for
 
-**Primary market:** Egypt, starting in Alexandria and then Cairo. The app is in Arabic and English, with RTL as a first-class layout.
+**Primary market:** Egypt, starting in Alexandria and then Cairo. The app is in English (the default) and Arabic, with RTL as a first-class layout.
 
 | Persona | Wants | Pain today |
 |---|---|---|
