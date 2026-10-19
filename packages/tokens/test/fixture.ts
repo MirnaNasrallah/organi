@@ -24,6 +24,7 @@ export function fixture() {
     },
     spacing: { tokens: [{ name: 'space-1', value: '4px' }] as SizeEntry[] },
     radius: { tokens: [{ name: 'radius-sm', value: '8px' }] as SizeEntry[] },
+    size: { tokens: [{ name: 'size-touch-target', value: '44px' }] as SizeEntry[] },
   };
 }
 

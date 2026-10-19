@@ -16,9 +16,10 @@ describe('toCss', () => {
     assert.match(css, /^:root\[data-theme="dark"\] \{\n {2}color-scheme: dark;\n {2}--ink-muted: #A6BCAD;/m);
   });
 
-  it('exposes spacing, radius and the font stack as variables', () => {
+  it('exposes spacing, radius, sizes and the font stack as variables', () => {
     assert.match(css, /--space-1: 4px;/);
     assert.match(css, /--radius-sm: 8px;/);
+    assert.match(css, /--size-touch-target: 44px;/);
     assert.match(css, /--font-sans: "Rubik", sans-serif;/);
   });
 
@@ -38,6 +39,7 @@ describe('buildTheme', () => {
       colors: { light: { inkMuted: '#56685D' }, dark: { inkMuted: '#A6BCAD' } },
       space: { 1: 4 },
       radius: { sm: 8 },
+      size: { touchTarget: 44 },
       text: {
         body: { fontSize: 16, lineHeight: 24, fontWeight: 400 },
         metric: { fontSize: 28, lineHeight: 32, fontWeight: 500, letterSpacing: -0.5, fontVariant: ['tabular-nums'] },

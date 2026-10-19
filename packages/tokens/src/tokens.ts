@@ -20,6 +20,7 @@ export type Tokens = {
   textStyles: TextStyle[];
   space: SizeToken[];
   radius: SizeToken[];
+  size: SizeToken[];
 };
 
 type Json = Record<string, unknown>;
@@ -63,6 +64,7 @@ export function parseTokens(raw: unknown): Tokens {
     ),
     space: sizes(root.spacing, 'spacing', 'space-'),
     radius: sizes(root.radius, 'radius', 'radius-'),
+    size: sizes(root.size, 'size', 'size-'),
   };
 }
 

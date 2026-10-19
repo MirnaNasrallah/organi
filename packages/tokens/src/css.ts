@@ -5,7 +5,7 @@ export function toCss(tokens: Tokens): string {
   const dark = tokens.colors.map((color) => `--${color.name}: ${color.dark};`);
   const shared = [
     `--font-sans: ${tokens.fontFamily};`,
-    ...[...tokens.space, ...tokens.radius].map((size) => `--${size.name}: ${size.px}px;`),
+    ...[...tokens.space, ...tokens.radius, ...tokens.size].map((size) => `--${size.name}: ${size.px}px;`),
   ];
 
   return [

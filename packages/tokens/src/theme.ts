@@ -13,6 +13,7 @@ export function buildTheme(tokens: Tokens): { [key: string]: Value } {
     },
     space: scale(tokens.space, 'space-'),
     radius: scale(tokens.radius, 'radius-'),
+    size: scale(tokens.size, 'size-'),
     text: Object.fromEntries(tokens.textStyles.map((style) => [style.name, textStyle(style)])),
   };
 }
@@ -45,7 +46,7 @@ function textStyle(style: TextStyle): { [key: string]: Value } {
 }
 
 function scale(sizes: SizeToken[], prefix: string): { [key: string]: number } {
-  return Object.fromEntries(sizes.map((size) => [size.name.slice(prefix.length), size.px]));
+  return Object.fromEntries(sizes.map((size) => [camel(size.name.slice(prefix.length)), size.px]));
 }
 
 function camel(name: string): string {
