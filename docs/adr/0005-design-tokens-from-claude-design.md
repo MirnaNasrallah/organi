@@ -25,5 +25,5 @@ Colours, type, spacing and radii come from `packages/tokens` (RULES §3, §4). T
 
 ## Action items
 1. [x] Add to the design system before building form controls: a control-border colour with at least 3:1 contrast (`line` is 1.16:1 and decorative only) and a 44 pt minimum touch target. Done in v0.5: `line-strong` and `size-touch-target`, both guarded by tests.
-2. [ ] Check Rubik has tabular figures (`tnum`) for the `metric` style on web and mobile.
+2. [x] Check Rubik has tabular figures (`tnum`) for the `metric` style on web and mobile. It does, in every weight we load. Its default digits are proportional, so `metric` must keep `tabular-nums`. The same files cover the Arabic alphabet and Eastern Arabic digits.
 3. [x] Remove the stale files from the artifact (v0.5).
