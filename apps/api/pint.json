@@ -1,6 +1,16 @@
 {
     "preset": "laravel",
     "rules": {
-        "declare_strict_types": true
+        "declare_strict_types": true,
+        "native_function_invocation": {
+            "include": ["@all"],
+            "scope": "namespaced",
+            "strict": true
+        },
+        "global_namespace_import": {
+            "import_classes": true,
+            "import_constants": true,
+            "import_functions": true
+        }
     }
 }

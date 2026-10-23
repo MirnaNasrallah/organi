@@ -8,6 +8,10 @@ use App\Modules\Planning\Targets\Bmr\BmrFormula;
 use App\Modules\Planning\Targets\Bmr\KatchMcArdle;
 use App\Modules\Planning\Targets\Bmr\MifflinStJeor;
 
+use function max;
+use function min;
+use function round;
+
 /**
  * Daily calories and macros from body stats and a goal (CONTEXT §7, steps 2–5), with the
  * safety gates from PLAN §4.3. Pure maths: no database, no AI. Every number comes from

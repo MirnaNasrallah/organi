@@ -7,6 +7,10 @@ namespace App\Modules\Shared;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 
+use function array_filter;
+use function array_map;
+use function array_values;
+
 enum Locale: string
 {
     case English = 'en';

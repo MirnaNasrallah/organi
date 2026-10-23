@@ -15,8 +15,11 @@ use App\Modules\Planning\Targets\TargetsCalculator;
 use App\Modules\Planning\Targets\TargetsInput;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+
+use function min;
 
 /**
  * Expected values were worked out by hand and checked against an independent
@@ -113,7 +116,9 @@ final class TargetsCalculatorTest extends TestCase
         );
     }
 
+    // Thousands of profiles: it adds no branches, so the coverage run (phpunit.health.xml) skips it.
     #[Test]
+    #[Group('safety-grid')]
     public function no_one_is_planned_below_the_floor_or_faster_than_the_safe_rate(): void
     {
         $calculator = new TargetsCalculator;

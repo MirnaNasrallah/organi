@@ -18,6 +18,14 @@ $covered = (int) $coverage['branches-covered'];
 
 if ($valid === 0 || $covered < $valid) {
     fwrite(STDERR, "Health maths branch coverage is {$covered}/{$valid}: every branch needs a test (RULES §7).\n");
+
+    foreach ($coverage->xpath('//class') ?: [] as $class) {
+        foreach ($class->xpath('methods/method[number(@branch-rate) < 1]') ?: [] as $method) {
+            $percent = round((float) $method['branch-rate'] * 100);
+            fwrite(STDERR, "  {$class['name']}::{$method['name']}() {$percent}% of branches\n");
+        }
+    }
+
     exit(1);
 }
 

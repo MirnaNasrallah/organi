@@ -10,6 +10,12 @@
             <directory>app/Modules/Planning/Tests/Unit</directory>
         </testsuite>
     </testsuites>
+    <groups>
+        <exclude>
+            <!-- Covers no extra branches and takes minutes under path coverage; it runs in the normal suite. -->
+            <group>safety-grid</group>
+        </exclude>
+    </groups>
     <source>
         <include>
             <directory>app/Modules/Planning/Targets</directory>

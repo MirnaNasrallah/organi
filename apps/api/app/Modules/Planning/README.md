@@ -42,4 +42,5 @@ All of these are in `TargetRules`. They're common evidence-based defaults, not c
 - `Tests/Unit` must keep **100% branch coverage** of `Targets/` (RULES §7). CI runs `composer test:health` with Xdebug and fails below 100%; locally it needs Xdebug too. `php artisan test` runs the same tests without coverage.
 - Expected values in the tests were worked out by hand and checked against an independent implementation.
 - A grid test checks about 2,000 profiles never go under the floor or over the safe rate.
+- Native functions are imported (`use function min;`, enforced by Pint). Called unqualified in a namespace, PHP 8.4 compiles `min`/`max` with a runtime jump to check for a namespaced version. That path never runs, so it would leave branches no test can cover.
 - Enums map values with lookup tables rather than `match`: a `match` without `default` has an implicit "no arm" branch that can never run, which would make 100% branch coverage impossible.
