@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Dedoc\Scramble\Http\Middleware\RestrictedDocsAccess;
 use Dedoc\Scramble\OpenApiVersion;
+use Dedoc\Scramble\SecurityDocumentation\MiddlewareAuthSecurityStrategy;
 
 return [
     /*
@@ -187,6 +188,6 @@ return [
      *     ],
      * ],
      */
-    // 'security_strategy' => \Dedoc\Scramble\SecurityDocumentation\MiddlewareAuthSecurityStrategy::class,
-    'security_strategy' => null,
+    // Routes behind auth:sanctum need a bearer token in the spec; the rest are documented as public.
+    'security_strategy' => MiddlewareAuthSecurityStrategy::class,
 ];

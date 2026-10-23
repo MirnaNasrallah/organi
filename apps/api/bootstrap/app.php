@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Modules\Shared\Http\Middleware\SetLocaleFromHeader;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -15,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->api(append: [SetLocaleFromHeader::class]);
+    })
+    ->withSchedule(function (Schedule $schedule): void {
+        $schedule->command('sanctum:prune-expired --hours=24')->daily();
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
