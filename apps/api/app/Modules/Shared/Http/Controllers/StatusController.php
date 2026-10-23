@@ -9,6 +9,13 @@ use App\Modules\Shared\Locale;
 
 final class StatusController
 {
+    /**
+     * API status.
+     *
+     * Liveness, plus the language the API negotiated from Accept-Language.
+     *
+     * @unauthenticated
+     */
     public function __invoke(): StatusResource
     {
         return new StatusResource(Locale::current());

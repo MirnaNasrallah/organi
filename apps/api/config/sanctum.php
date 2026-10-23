@@ -48,7 +48,9 @@ return [
     |
     */
 
-    'expiration' => null,
+    // 90 days, in minutes (ADR 0004): long enough not to nag on a phone, short enough that a lost
+    // phone's token dies. Expired tokens are pruned daily (bootstrap/app.php).
+    'expiration' => 60 * 24 * 90,
 
     /*
     |--------------------------------------------------------------------------
