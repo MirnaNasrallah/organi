@@ -4,7 +4,7 @@ The typed client web and mobile use to call the API (ADR 0003, RULES §3). Never
 
 ## How it's made
 
-1. Scramble reads the Laravel routes, Form Requests and Resources and writes `openapi.json` (`pnpm --filter @lockmate/api spec`). **This file is committed**, so API changes show up as a reviewable diff.
+1. Scramble reads the Laravel routes, Form Requests and Resources and writes `openapi.json` (`pnpm --filter @lockmate/api spec`). **This file is committed**, so API changes show up as a reviewable diff. Scramble reads column types from the database to document models, so the export needs a migrated Postgres (CI runs one).
 2. `pnpm build` turns it into `src/schema.generated.ts` with `openapi-typescript` (not committed).
 3. `createApiClient` wraps `openapi-fetch` with those types.
 
