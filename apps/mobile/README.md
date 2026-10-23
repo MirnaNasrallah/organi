@@ -5,11 +5,24 @@ The main product (PLAN §3): Expo SDK 58, React Native, Expo Router and TanStack
 ## Run it
 
 ```bash
-cp .env.example .env    # points the app at the API Herd serves
-pnpm --filter @lockmate/mobile start
+cp .env.example .env              # points the app at the API Herd serves
+pnpm --filter @lockmate/mobile ios      # builds the app and opens it in the iOS simulator
+pnpm --filter @lockmate/mobile android  # same on an Android emulator
 ```
 
-Then press `i` for the iOS simulator (needs Xcode) or scan the QR code with Expo Go on a phone. A phone can't resolve `lockmate-api.test`: serve the API on your network (`php artisan serve --host 0.0.0.0` in `apps/api`) and set `EXPO_PUBLIC_API_URL` to `http://<your Mac's LAN IP>:8000/api/v1`. The Android emulator reaches the Mac at `10.0.2.2`.
+`ios` and `android` build the app natively (`expo run`), so the real icon, splash screen, per-app language and RTL settings apply. That needs Xcode with an iOS simulator and CocoaPods, or the Android SDK. `ios/` and `android/` are generated from `app.json` on every build and are not committed.
+
+A phone can't resolve `lockmate-api.test`: serve the API on your network (`php artisan serve --host 0.0.0.0` in `apps/api`) and set `EXPO_PUBLIC_API_URL` to `http://<your Mac's LAN IP>:8000/api/v1`. The Android emulator reaches the Mac at `10.0.2.2`.
+
+## Icon and splash
+
+`pnpm brand-assets` renders `assets/*.png` from the brand SVGs in `@lockmate/tokens/logos`. Run it whenever the logos change, and commit the PNGs.
+
+- **iOS icon:** the app icon, square (iOS rounds the corners).
+- **Android adaptive icon:** the leaves on transparency over forest (`adaptiveIcon.backgroundColor`), scaled to stay inside the launcher's mask. Android 13+ themed icons get a single-colour version with the midrib cut out.
+- **Splash:** the symbol on dew, or the reversed symbol on the dark background in dark mode. It stays up until Rubik has loaded.
+
+A test fails if the colours in `app.json` drift from the tokens.
 
 ## How it's put together
 
