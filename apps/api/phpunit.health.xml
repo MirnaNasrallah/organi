@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Health maths needs 100% branch coverage (RULES §7, ADR 0007). `composer test:health` runs this with Xdebug. -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <testsuites>
+        <testsuite name="Health maths">
+            <directory>app/Modules/Planning/Tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>app/Modules/Planning/Targets</directory>
+        </include>
+    </source>
+    <coverage pathCoverage="true">
+        <report>
+            <cobertura outputFile="build/health-coverage.xml"/>
+            <text outputFile="php://stdout" showOnlySummary="true"/>
+        </report>
+    </coverage>
+</phpunit>

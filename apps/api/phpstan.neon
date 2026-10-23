@@ -9,4 +9,5 @@ parameters:
         - config
         - database
         - routes
+        - scripts
         - tests
