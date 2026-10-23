@@ -11,6 +11,50 @@
         }
     ],
     "paths": {
+        "/targets": {
+            "post": {
+                "operationId": "v1.targets.calculate",
+                "description": "Daily calories and macros for a person and a goal, with the safety gates applied. Public and\nrate-limited, for the website calculators and app onboarding. Nothing is saved.",
+                "summary": "Calculate daily targets",
+                "tags": [
+                    "CalculateTargets"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CalculateTargetsRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`TargetsResource`",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/TargetsResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                },
+                "security": []
+            }
+        },
         "/status": {
             "get": {
                 "operationId": "v1.status",
@@ -42,6 +86,96 @@
     },
     "components": {
         "schemas": {
+            "ActivityLevel": {
+                "type": "string",
+                "enum": [
+                    "sedentary",
+                    "light",
+                    "moderate",
+                    "active",
+                    "very_active"
+                ],
+                "title": "ActivityLevel"
+            },
+            "CalculateTargetsRequest": {
+                "type": "object",
+                "properties": {
+                    "sex": {
+                        "$ref": "#/components/schemas/Sex"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "minimum": 13,
+                        "maximum": 100
+                    },
+                    "height_cm": {
+                        "type": "number",
+                        "minimum": 100,
+                        "maximum": 250
+                    },
+                    "weight_kg": {
+                        "type": "number",
+                        "minimum": 30,
+                        "maximum": 300
+                    },
+                    "activity": {
+                        "$ref": "#/components/schemas/ActivityLevel"
+                    },
+                    "goal": {
+                        "$ref": "#/components/schemas/Goal"
+                    },
+                    "weekly_pace_kg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 2
+                    },
+                    "body_fat_percent": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "minimum": 3,
+                        "maximum": 70
+                    },
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HealthCondition"
+                        },
+                        "uniqueItems": true
+                    }
+                },
+                "required": [
+                    "sex",
+                    "age",
+                    "height_cm",
+                    "weight_kg",
+                    "activity",
+                    "goal"
+                ],
+                "title": "CalculateTargetsRequest"
+            },
+            "Goal": {
+                "type": "string",
+                "enum": [
+                    "lose_fat",
+                    "maintain",
+                    "gain_muscle"
+                ],
+                "title": "Goal"
+            },
+            "HealthCondition": {
+                "type": "string",
+                "description": "Anything a person reports that rules out a deficit and sends them to a professional (PLAN \u00a74.3).\n",
+                "enum": [
+                    "pregnant",
+                    "breastfeeding",
+                    "diabetes",
+                    "kidney_disease",
+                    "eating_disorder_history"
+                ],
+                "title": "HealthCondition"
+            },
             "Locale": {
                 "type": "string",
                 "enum": [
@@ -49,6 +183,24 @@
                     "ar"
                 ],
                 "title": "Locale"
+            },
+            "SafetyNote": {
+                "type": "string",
+                "description": "Why the targets differ from what was asked for. The apps explain each one to the person.\n| |\n|---|\n| `see_a_professional` <br/> Under 18 or a reported condition: maintenance only, and a professional's advice. |\n| `pace_capped` <br/> The requested pace was faster than the safe weekly rate. |\n| `raised_to_calorie_floor` <br/> The target fell below the daily calorie floor and was raised to it. |",
+                "enum": [
+                    "see_a_professional",
+                    "pace_capped",
+                    "raised_to_calorie_floor"
+                ],
+                "title": "SafetyNote"
+            },
+            "Sex": {
+                "type": "string",
+                "enum": [
+                    "female",
+                    "male"
+                ],
+                "title": "Sex"
             },
             "StatusResource": {
                 "type": "object",
@@ -66,6 +218,81 @@
                     "locale"
                 ],
                 "title": "StatusResource"
+            },
+            "TargetsResource": {
+                "type": "object",
+                "properties": {
+                    "kcal": {
+                        "type": "integer"
+                    },
+                    "protein_g": {
+                        "type": "integer"
+                    },
+                    "carbs_g": {
+                        "type": "integer"
+                    },
+                    "fat_g": {
+                        "type": "integer"
+                    },
+                    "bmr_kcal": {
+                        "type": "integer"
+                    },
+                    "maintenance_kcal": {
+                        "type": "integer"
+                    },
+                    "notes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SafetyNote"
+                        }
+                    },
+                    "formula_version": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "kcal",
+                    "protein_g",
+                    "carbs_g",
+                    "fat_g",
+                    "bmr_kcal",
+                    "maintenance_kcal",
+                    "notes",
+                    "formula_version"
+                ],
+                "title": "TargetsResource"
+            }
+        },
+        "responses": {
+            "ValidationException": {
+                "description": "Validation error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Errors overview."
+                                },
+                                "errors": {
+                                    "type": "object",
+                                    "description": "A detailed description of each field that failed validation.",
+                                    "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "message",
+                                "errors"
+                            ]
+                        }
+                    }
+                }
             }
         }
     }

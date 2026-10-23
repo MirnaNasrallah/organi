@@ -7,6 +7,7 @@ Owns the plan engine (CONTEXT §7): targets now; plan versions, meal slots and t
 - `CalculatesTargets` / `TargetsCalculator`: body stats and a goal in (`TargetsInput`), daily calories and macros out (`Targets`). Pure PHP, with no database and no AI.
 - `Targets::$notes`: why the result differs from what was asked (`SafetyNote`), so the apps can explain it.
 - `TargetsCalculator::FORMULA_VERSION`: stored on every plan so results can be reproduced.
+- `POST /api/v1/targets`: public and rate-limited (60 a minute per IP), for the website calculators and app onboarding. It calculates and saves nothing. Validation (`CalculateTargetsRequest`) rejects implausible values; the safety limits stay in the calculator, which reports them in `notes`.
 
 ## How targets are worked out
 
@@ -39,7 +40,7 @@ All of these are in `TargetRules`. They're common evidence-based defaults, not c
 
 ## Tests
 
-- `Tests/Unit` must keep **100% branch coverage** of `Targets/` (RULES §7). CI runs `composer test:health` with Xdebug and fails below 100%; locally it needs Xdebug too. `php artisan test` runs the same tests without coverage.
+- `Tests/Unit` must keep **100% branch coverage** of `Targets/` (RULES §7). CI runs `composer test:health` with Xdebug and fails below 100%. Locally, with the Xdebug build in `~/.local/share/xdebug`: `PHP_INI_SCAN_DIR=":$HOME/.local/share/xdebug/conf.d" /opt/homebrew/bin/php "$(which composer)" test:health`. `php artisan test` runs the same tests without coverage.
 - Expected values in the tests were worked out by hand and checked against an independent implementation.
 - A grid test checks about 2,000 profiles never go under the floor or over the safe rate.
 - Native functions are imported (`use function min;`, enforced by Pint). Called unqualified in a namespace, PHP 8.4 compiles `min`/`max` with a runtime jump to check for a namespaced version. That path never runs, so it would leave branches no test can cover.
