@@ -14,6 +14,10 @@ Colours, type, spacing and radii for web and mobile, from one file (ADR 0005).
 
 To update: ask Claude to read `project/tokens.json` from the artifact, replace this copy, update the table above, then run `pnpm --filter @lockmate/tokens build test`. The tests fail if the format changes, a text colour drops below WCAG AA (4.5:1), or `line-strong` drops below 3:1.
 
+## Logos
+
+`logos/` holds the ten SVGs from the artifact's Logos group (lockups, symbol, wordmark, app icon), copied as-is: never redraw or recolour them. Import them as `@lockmate/tokens/logos/<file>.svg`. Each app renders the sizes it needs from these files (the mobile app: `pnpm --filter @lockmate/mobile brand-assets`).
+
 ## Outputs (`pnpm build` → `dist/`, not committed)
 
 | Import                        | For    | What                                                                                                                                                                   |

@@ -9,7 +9,7 @@ export default defineConfig(
   // `*.generated.*` files come from tools (e.g. openapi-typescript) and are never edited by hand.
   globalIgnores(['dist/', '**/*.generated.*']),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ['**/*.{ts,tsx,mts,cts}'],
     extends: [js.configs.recommended, tseslint.configs.strict],
   },
   prettier,
