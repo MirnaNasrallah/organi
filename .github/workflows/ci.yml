@@ -27,7 +27,8 @@ jobs:
         with:
           php-version: '8.4'
           extensions: intl
-          coverage: none
+          # Xdebug, for the branch coverage of the health maths (RULES §7).
+          coverage: xdebug
 
       - name: Install API dependencies
         working-directory: apps/api
@@ -40,6 +41,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm turbo run lint typecheck test build
+
+      # Health maths must have 100% branch coverage (RULES §7, ADR 0007).
+      - name: Health maths branch coverage
+        working-directory: apps/api
+        run: composer test:health
 
       # The build re-exports openapi.json from the API code; a diff means the committed spec is stale (ADR 0003).
       - name: Generated files are up to date

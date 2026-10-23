@@ -8,6 +8,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+use function config;
+
 final class StatusTest extends TestCase
 {
     #[Test]
